@@ -4,6 +4,7 @@ from ftplib import FTP
 import os
 import io
 import random
+import yahtzee_offline as offlinegamefile
 pygame.init()
 
 DISPLAY_INFO = pygame.display.Info()
@@ -61,6 +62,7 @@ TAB = "     "
 
 NAME_COMPUTER = os.getenv('COMPUTERNAME')
 
+#I won't give you access to the ftp server
 server = FTP("???", "???", "???")
 server.cwd("yahtzee")
 
@@ -802,7 +804,6 @@ def show_menu(my_username):
                 run = False
                 match = sorted([my_username, user])
 
-
     label_logged_in_as = Label(WIDTH * 0.2, HEIGHT * 0.05, f"Logged in as {my_username}", COURIERNEW_MEDIUM_BOLD, black)
     label_searching = Label(WIDTH * 0.725, HEIGHT * 0.25, "", COURIERNEW_MEDIUM_BOLD, black)
     label_you_have_been_invited_by = Label(WIDTH * 0.68 + WIDTH * 0.045, HEIGHT * 0.03, "", COURIERNEW_MEDIUM_BOLD, black)
@@ -872,6 +873,7 @@ def show_login():
 
         button_login.draw()
         button_register.draw()
+        button_play_offline.draw()
 
     def func_button_login():
         nonlocal run, menu
@@ -895,6 +897,10 @@ def show_login():
         run = False
         register = True
 
+    def play_offline():
+        offlinegame = offlinegamefile.Game()
+        offlinegame.show_menu()
+
     label_please_log_in = Label(WIDTH * 0.5, HEIGHT * 0.1, "Please log in!", COURIERNEW_BIG_BOLD, black)
     label_dont_have_an_account_yet = Label(WIDTH * 0.4, HEIGHT * 0.9, "Don't have an account yet?", COURIERNEW_SMALL_BOLD, black)
     label_error = Label(WIDTH * 0.5, HEIGHT * 0.65, "", COURIERNEW_MEDIUM_BOLD, red)
@@ -903,7 +909,8 @@ def show_login():
     input_password = TextInput(WIDTH * 0.5, HEIGHT * 0.55, COURIERNEW_BIG, 25, grey, green, black, "Password", COURIERNEW_BIG_BOLD, is_password=True)
 
     button_login = Button(WIDTH * 0.4, HEIGHT * 0.7, WIDTH * 0.2, HEIGHT * 0.1, black, grey, "Log in", COURIERNEW_BIG_BOLD, func_button_login)
-    button_register = Button(WIDTH * 0.53, HEIGHT * 0.875, WIDTH * 0.1, HEIGHT * 0.05, black, grey, "register", COURIERNEW_SMALL_BOLD, func_button_register)
+    button_register = Button(WIDTH * 0.53, HEIGHT * 0.875, WIDTH * 0.1, HEIGHT * 0.05, black, grey, "Register", COURIERNEW_SMALL_BOLD, func_button_register)
+    button_play_offline = Button(WIDTH * 0.8, HEIGHT * 0.9, WIDTH * 0.2, HEIGHT * 0.1, black, grey, "Play offline", COURIERNEW_MEDIUM_BOLD, play_offline)
 
     menu = False
     register = False
@@ -927,6 +934,7 @@ def show_login():
 
         button_login.loop()
         button_register.loop()
+        button_play_offline.loop()
 
         draw_login()
         pygame.display.update()
