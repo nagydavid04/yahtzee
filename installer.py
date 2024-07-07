@@ -11,7 +11,7 @@ def list_dir():
     return files
 
 
-server = FTP("ftp.sci-soft.eu", "sci-soft.eu", "nagyzoliftp")
+server = FTP("???", "???", "???")
 server.cwd("yahtzee")
 
 server.cwd("versions")
