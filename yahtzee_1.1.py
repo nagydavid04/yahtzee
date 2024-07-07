@@ -61,7 +61,7 @@ TAB = "     "
 
 NAME_COMPUTER = os.getenv('COMPUTERNAME')
 
-server = FTP("ftp.sci-soft.eu", "sci-soft.eu", "nagyzoliftp")
+server = FTP("???", "???", "???")
 server.cwd("yahtzee")
 
 def list_dir():
