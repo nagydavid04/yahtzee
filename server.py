@@ -3,7 +3,7 @@ from ftplib import FTP
 import io
 import re
 
-server = FTP("ftp.sci-soft.eu", "sci-soft.eu", "nagyzoliftp")
+server = FTP("???", "???", "???")
 server.cwd("yahtzee")
 
 def validate_username(username, accounts):
