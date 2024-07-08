@@ -204,7 +204,7 @@ while True:
 
     for name_command, parameters in requests:
         command = name_command[1]
-        if command != "get_online_players_status":
+        if command != "get_online_players_status" or "download_game_variables":
             print(f"Command: {command}, parameters: {parameters}")
         need_response = True if parameters[-1] == "True" else False
         parameters = parameters[:-1]
